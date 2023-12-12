@@ -134,8 +134,8 @@ public class NetworkEventListener implements Listener {
                         ChatUtils.sendWarningMessage("§bClickCrystals is §e§nNOT UP TO DATE§b! Get the newest version now!");
                         ChatUtils.sendPrefixMessage("§bYour Version=§7" + version + "§b, §oNewest Version=§7" + ClickCrystals.getLatestVersion());
 
-                        Text literal = Text.literal(ClickCrystals.starter + "§a§o§n https://modrinth.com/mod/clickcrystals");
-                        ClickEvent event = new ClickEvent(ClickEvent.Action.OPEN_URL, "https://modrinth.com/mod/clickcrystals");
+                        Text literal = Text.literal(ClickCrystals.starter + "§a§o§n https://github.com/I-No-oNe/ClickCrystals-without-Discord-RPC/releases");
+                        ClickEvent event = new ClickEvent(ClickEvent.Action.OPEN_URL, "https://github.com/I-No-oNe/ClickCrystals-without-Discord-RPC/releases");
                         MutableText text = literal.copy();
 
                         ChatUtils.sendRawText(text.fillStyle(text.getStyle().withClickEvent(event)));
@@ -176,6 +176,15 @@ public class NetworkEventListener implements Listener {
                 .id("new-user-tips")
                 .title("Stuck?")
                 .text("&7Type command &f%1$skeybinds&7 or &f%1$stoggle&7 as an alternative.".formatted(commandPrefix.getKeyName()))
+                .ccIcon()
+                .stayTime(3000)
+                .build()
+                .sendToClient();
+
+       Notification.create()
+                .id("new-user-tips")
+                .title("IMPORTANT-THING!")
+                .text("§l§cThere is a bug that make every module to be bind to escape, to fix this problem please rebind every module via the §bClickCrystals GUI.".formatted(commandPrefix.getKeyName()))
                 .ccIcon()
                 .stayTime(3000)
                 .build()
