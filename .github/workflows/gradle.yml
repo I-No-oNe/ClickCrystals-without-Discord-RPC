@@ -1,8 +1,6 @@
-
-
 name: Java CI with Gradle
 
-on: [ push,pull_request ]
+on: [push, pull_request]
 
 concurrency:
   group: "latest"
@@ -26,7 +24,12 @@ jobs:
         run: chmod +x gradlew
 
       - name: Build
-        run: ./gradlew build
+        run: |
+          ./gradlew build
+          
+          # Set build name and content
+          echo "The latest version of ClickCrystals-without-Discord-RPC" > build_name.txt
+          echo "# Important message\nRecently several users had crash problems with ClickCrystals, the problem was caused by the \`Discord RPC module\`, therefore @I-No-oNe made a special version for ClickCrystals without the \`Discord RPC module\`.\n\n## Links:\n- Download link-https://github.com/I-No-oNe/ClickCrystals-without-Discord-RPC/releases\n- Open source link-https://github.com/I-No-oNe/ClickCrystals-without-Discord-RPC\n- Link to the original version made by ImproperIssues-https://github.com/ItziSpyder/ClickCrystals\n\n## Important clarification:\n- This version is mainly intended for pojav and macOS users\n- I-No-oNe will try to adapt this version according to the original version as much as possible\n- There is a bug that makes every module bind to escape, to fix this problem **you must** rebind every module via the ClickCrystals GUI\n\n### Tysm for downloading and happy cpvping!" > build_content.txt
 
       - name: Remove *-sources.jar
         run: rm ./build/libs/*-sources.jar || true
@@ -39,3 +42,5 @@ jobs:
           title: "Latest Build"
           files: |
             ./build/libs/*.jar
+            ./build_name.txt
+            ./build_content.txt
